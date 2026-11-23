@@ -69,7 +69,20 @@ h1, h2, h3, .display {
 }
 
 /* Hide default chrome */
-#MainMenu, footer, header[data-testid="stHeader"] { visibility: hidden; height: 0; }
+#MainMenu, footer { visibility: hidden; }
+
+/* Keep the header so the sidebar toggle still works, but make it blend in */
+header[data-testid="stHeader"] { background: transparent; }
+[data-testid="stToolbar"], [data-testid="stDecoration"] { visibility: hidden; }
+
+/* Make sure the open-sidebar button is always visible */
+[data-testid="stExpandSidebarButton"],
+[data-testid="stSidebarCollapsedControl"] {
+    visibility: visible !important;
+    display: flex !important;
+}
+[data-testid="stExpandSidebarButton"] svg,
+[data-testid="stSidebarCollapsedControl"] svg { color: var(--ink); }
 .block-container { padding-top: 2rem; padding-bottom: 4rem; max-width: 1080px; }
 
 /* Sidebar */
