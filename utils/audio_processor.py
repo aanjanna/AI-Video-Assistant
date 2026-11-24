@@ -1,3 +1,15 @@
+import tempfile
+import streamlit as st
+
+def _cookie_file():
+    try:
+        cookies = st.secrets["YOUTUBE_COOKIES"]
+    except Exception:
+        return None
+    path = os.path.join(tempfile.gettempdir(), "yt_cookies.txt")
+    with open(path, "w") as f:
+        f.write(cookies)
+    return path
 import os
 import yt_dlp
 from pydub import AudioSegment
@@ -27,6 +39,10 @@ def download_youtube_audio(url: str) -> str:
             }
         ],
     }
+
+    cookie_path = _cookie_file()
+    if cookie_path:
+        ydl_opts["cookiefile"] = cookie_path
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
