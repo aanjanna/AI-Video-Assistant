@@ -7,10 +7,17 @@ __pycache__/
 *.pyc
 
 # Downloads / generated audio
-downloades/
+downloads/
+*.webm
+*.mp4
+*.mp3
+*.wav
+*.m4a
 
 # Vector database
 vector_db/
 
 # VS Code
 .vscode/
+
+cookies.txt
